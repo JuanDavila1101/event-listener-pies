@@ -56,6 +56,118 @@ const pies = [{
     },
 ];
 
+// ****** printToDom  ******
+const printToDom = (divID, textToPrint) => {
+    // console.log('in printToDom');
+    // console.log(divID);
+    // console.log(textToPrint);
+    const selectedDiv = document.querySelector(divID);
+    // console.log(selectedDiv);
+    selectedDiv.innerHTML = textToPrint;
+}
+
+// taco = is the pies array
+const pieBuilder = (taco) => {
+    let domString = '';
+    // console.log('in pieBuilder');
+    for (let i = 0; i < taco.length; i++) {
+        domString += `<div class="card my-2" style="width: 18rem;" id=${i}>
+                        <div class="img-container" style="background-image: url('${taco[i].imageUrl}');"></div>
+                        <div class="card-body">
+                          <p class="card-text">${taco[i].name}</p>
+                          <p class="card-text">${taco[i].ingredients}</p>
+                          <p class="card-text">${taco[i].bakeTemp}</p>
+                          <p class="card-text">${taco[i].drinkPairing}</p>
+                          <p class="card-text">${taco[i].iceCream}</p>
+                          <button type="button" class="btn btn-danger" id="${i}">Delete</button>
+                        </div>
+                      </div>`;
+
+    }
+    // console.log('in pieBuilder');
+    // console.log(domString);
+    printToDom('#pies', domString);
+}
+
+/*This is the callback function to handle the different targeted buttons */
+// const handleButtonClick = (e) => {
+//     console.log(e.target.id);
+// }
+
+// expanding on the function below
+const handleButtonClick = (e) => {
+    // console.log(e.target.id);
+    const buttonID = e.target.id;
+
+    // we have access to the entire event 
+    // console.log(e);
+
+    if (buttonID === 'Trinity') {
+        //Dark mode
+        document.querySelector('body').style.backgroundColor = '#000';
+    } else if (buttonID === 'Doc') {
+        //Light mode
+        document.querySelector('body').style.backgroundColor = '#FFF';
+    } else if (buttonID === 'Aja') {
+        // Medium mode
+        document.querySelector('body').style.backgroundColor = '#808080';
+    } else if (buttonID === 'All') {
+        // Default mode
+        document.querySelector('body').style.backgroundColor = 'rgb(175, 196, 175)';
+    }
+
+    //Update the pies based on the button click
+    const selectedPies = [];
+    //Pies[0].instructor // Doc
+    for (let i = 0; i < pies.length; i++) {
+        if (pies[i].instructor === buttonID) {
+            selectedPies.push(pies[i]);
+        }
+    }
+
+    if (buttonID === 'All') {
+        pieBuilder(pies);
+    } else {
+        pieBuilder(selectedPies);
+    }
+
+}
+
+// // target elements on the DOM 
+// const ButtonEvents = () => {
+//     const allBtn = document.querySelector('#All');
+//     const docBtn = document.querySelector('#Doc');
+//     const ajaBtn = document.querySelector('#Aja');
+//     const trinityBtn = document.querySelector('#Trinity');
+
+//     // now we are targeting each one of them 
+//     // The second argument is an anonymous to make sure that it actually works the way we want 
+//     // allBtn.addEventListener('click', (e) => {
+//     //     console.log(e.target.id);
+//     // })
+//     /*We can create a call back function to not have to target each btn individually */
+
+//     allBtn.addEventListener('click', handleButtonClick);
+// }
+
+/*Chainnig = ability to do something and add something to it at the end 
+same as above to, short hand  */
+// target elements on the DOM 
+const ButtonEvents = () => {
+    document.querySelector('#All').addEventListener('click', handleButtonClick);
+    document.querySelector('#Doc').addEventListener('click', handleButtonClick);
+    document.querySelector('#Aja').addEventListener('click', handleButtonClick);
+    document.querySelector('#Trinity').addEventListener('click', handleButtonClick);
+}
+
+const init = () => {
+    ButtonEvents();
+    pieBuilder(pies);
+    // console.log('in init');
+}
+
+init();
+
 
 
 

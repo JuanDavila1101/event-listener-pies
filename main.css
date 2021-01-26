@@ -1,5 +1,12 @@
 /*JID Pies event-listeners */
 
 body {
-    background-color: rgb(102, 140, 106);
+    /* background-color: rgb(102, 140, 106); */
+    background-color: beige;
+}
+
+.img-container {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
 }
