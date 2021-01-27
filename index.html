@@ -23,7 +23,70 @@
         </div>
         <div id="pies" class="d-flex flex-wrap justify-content-around"></div>
         <hr />
-        <div class="pie-form"></div>
+        <div class="pie-form">
+
+            <!-- <form>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label" id="lblName">Name</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+
+                <form action="/action_page.php">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <input type="submit">
+                </form> -->
+
+            <!-- START FORM  -->
+            <div class="pie-form mb-5">
+                <h2 class="text-center">Add A Pie</h2>
+                <form id="pie-form">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ingredients" class="form-label">Ingredients</label>
+                        <input type="text" class="form-control" id="ingredients" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bakeTemp" class="form-label">Bake Temp</label>
+                        <input type="number" class="form-control" id="bakeTemp" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="drinkPairing" class="form-label">Drink Pairing</label>
+                        <input type="text" class="form-control" id="drinkPairing" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageUrl" class="form-label">Image Url</label>
+                        <input type="url" class="form-control" id="imageUrl" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="instructor" class="form-label">Instructor</label>
+                        <select id="instructor" class="form-select" aria-label="Default select example" required>
+                          <option value="">Select an Instructor</option>
+                          <option value="Doc">Dr. T</option>
+                          <option value="Aja">Aja</option>
+                          <option value="Trinity">Trinity</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="iceCream" class="form-label">Ice Cream</label>
+                        <input type="text" class="form-control" id="iceCream" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <!-- END FORM  -->
+
+
+
+        </div>
     </div>
 
 
