@@ -10,3 +10,9 @@ body {
     background-size: cover;
     background-position: center;
 }
+
+.pie-form {
+    width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
