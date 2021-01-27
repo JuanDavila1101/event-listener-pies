@@ -180,7 +180,23 @@ const getFormInfo = (e) => {
     document.querySelector('form').reset();
 }
 
+// D in crud delete pie
+const deletePie = (e) => {
 
+    const tartgetType = e.target.type;
+    const targetID = e.target.id;
+
+    if (tartgetType === 'button') {
+        // Do Something 
+        console.log(pies);
+        pies.splice(targetID, 1);
+
+    } else {
+        console.log(pies);
+    }
+    pieBuilder(pies);
+
+}
 
 
 
@@ -193,6 +209,37 @@ const ButtonEvents = () => {
     document.querySelector('#Doc').addEventListener('click', handleButtonClick);
     document.querySelector('#Aja').addEventListener('click', handleButtonClick);
     document.querySelector('#Trinity').addEventListener('click', handleButtonClick);
+
+    document.querySelector('#pies').addEventListener('click', deletePie);
+
+    // document.querySelector('#pies').addEventListener('click', (e) => {
+    //     console.log(e.target.id);
+    // });
+
+    // document.querySelector('#pies').addEventListener('click', (e) => {
+    //     console.log(e);
+    // });
+
+
+    // document.querySelector('#pies').addEventListener('click', (e) => {
+    //     // console.log(e.target.id);
+    //     const tartgetType = e.target.type;
+    //     const targetID = e.target.id;
+
+    //     if (tartgetType === 'button') {
+    //         // Do Something 
+    //         console.log(pies);
+    //         pies.splice(targetID, 1);
+
+    //     } else {
+    //         console.log(pies);
+    //     }
+    //     pieBuilder(pies);
+    // });
+
+
+
+
     document.querySelector('form').addEventListener('submit', getFormInfo);
     // document.querySelector('form').addEventListener('submit', (e) => {
     //     e.preventDefault();
@@ -221,6 +268,8 @@ const ButtonEvents = () => {
 
     //}); // the page reloaded to fast 
     // we don't want it to reload
+
+
 }
 
 
