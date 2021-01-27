@@ -25,24 +25,7 @@
         <hr />
         <div class="pie-form">
 
-            <!-- <form>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label" id="lblName">Name</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-
-                <form action="/action_page.php">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                    <input type="submit">
-                </form> -->
-
-            <!-- START FORM  -->
+            <!-- START FORM  From Dr. T. -->
             <div class="pie-form mb-5">
                 <h2 class="text-center">Add A Pie</h2>
                 <form id="pie-form">
@@ -69,10 +52,10 @@
                     <div class="mb-3">
                         <label for="instructor" class="form-label">Instructor</label>
                         <select id="instructor" class="form-select" aria-label="Default select example" required>
-                          <option value="">Select an Instructor</option>
-                          <option value="Doc">Dr. T</option>
-                          <option value="Aja">Aja</option>
-                          <option value="Trinity">Trinity</option>
+                          <option value="" id="selectAnInstructor" readonly="readonly">Select an Instructor</option>
+                          <option value="Doc" id="valueDoc">Dr. T</option>
+                          <option value="Aja" id="valueAja">Aja</option>
+                          <option value="Trinity" id="valueTrinity">Trinity</option>
                         </select>
                     </div>
                     <div class="mb-3">
