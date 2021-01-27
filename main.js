@@ -1,4 +1,5 @@
 console.log('CONNECTED');
+debugger;
 
 const pies = [{
         name: 'Dutch Apple Pie',
@@ -56,6 +57,10 @@ const pies = [{
     },
 ];
 
+let filter = false;
+const selectedPies = [];
+let loading = true;
+
 // ****** printToDom  ******
 const printToDom = (divID, textToPrint) => {
     // console.log('in printToDom');
@@ -69,21 +74,63 @@ const printToDom = (divID, textToPrint) => {
 // taco = is the pies array
 const pieBuilder = (taco) => {
     let domString = '';
-    // console.log('in pieBuilder');
-    for (let i = 0; i < taco.length; i++) {
-        domString += `<div class="card my-2" style="width: 18rem;" id=${i}>
-                        <div class="img-container" style="background-image: url('${taco[i].imageUrl}');"></div>
-                        <div class="card-body">
-                          <p class="card-text">${taco[i].name}</p>
-                          <p class="card-text">${taco[i].ingredients}</p>
-                          <p class="card-text">${taco[i].bakeTemp}</p>
-                          <p class="card-text">${taco[i].drinkPairing}</p>
-                          <p class="card-text">${taco[i].iceCream}</p>
-                          <button type="button" class="btn btn-danger" id="${i}">Delete</button>
-                        </div>
-                      </div>`;
 
-    }
+    // console.log('in pieBuilder');
+    // for (let i = 0; i < taco.length; i++) {
+    //     domString += `<div class="card my-2" style="width: 18rem;" id=${i}>
+    //                     <div class="img-container" style="background-image: url('${taco[i].imageUrl}');"></div>
+    //                     <div class="card-body">
+    //                       <p class="card-text">${taco[i].name}</p>
+    //                       <p class="card-text">${taco[i].ingredients}</p>
+    //                       <p class="card-text">${taco[i].bakeTemp}</p>
+    //                       <p class="card-text">${taco[i].drinkPairing}</p>
+    //                       <p class="card-text">${taco[i].iceCream}</p>
+    //                       <button type="button" class="btn btn-danger" id="${i}">Delete</button>
+    //                     </div>
+    //                   </div>`;
+
+    // }
+
+
+    // For Each
+    taco.forEach((item, i) => {
+        // console.log(i);
+        // console.log(item);
+        domString += `<div class="card my-2" style="width: 18rem;" id=${i}>
+                    <div class="img-container" style="background-image: url('${item.imageUrl}');"></div>
+                    <div class="card-body">
+                      <p class="card-text">${item.name}</p>
+                      <p class="card-text">${item.ingredients}</p>
+                      <p class="card-text">${item.bakeTemp}</p>
+                      <p class="card-text">${item.drinkPairing}</p>
+                      <p class="card-text">${item.iceCream}</p>
+                      <button type="button" class="btn btn-danger" id="${i}">Delete</button>
+                    </div>
+                  </div>`;
+    })
+
+
+
+    //For of 
+    // for (const [i, item] of taco.entries()) {
+    //     console.log(i);
+    //     console.log(item);
+    //     const { name, ingredients } = item;
+    //     domString += `<div class="card my-2" style="width: 18rem;" id=${i}>
+    //                   <div class="img-container" style="background-image: url('${taco[i].imageUrl}');"></div>
+    //                   <div class="card-body">
+    //                     <p class="card-text">${name}</p>
+    //                     <p class="card-text">${ingredients}</p>
+    //                     <p class="card-text">${item.bakeTemp}</p>
+    //                     <p class="card-text">${item.drinkPairing}</p>
+    //                     <p class="card-text">${item.iceCream}</p>
+    //                     <button type="button" class="btn btn-danger" id="${i}">Delete</button>
+    //                   </div>
+    //                 </div>`;
+    // }
+
+
+
     // console.log('in pieBuilder');
     // console.log(domString);
     printToDom('#pies', domString);
@@ -117,17 +164,28 @@ const handleButtonClick = (e) => {
     }
 
     //Update the pies based on the button click
-    const selectedPies = [];
+    // const selectedPies = [];
+    selectedPies.length = 0;
     //Pies[0].instructor // Doc
+
     for (let i = 0; i < pies.length; i++) {
         if (pies[i].instructor === buttonID) {
             selectedPies.push(pies[i]);
         }
     }
+    loading = false;
 
     if (buttonID === 'All') {
+
+        for (let i = 0; i < pies.length; i++) {
+            if (pies[i].instructor === buttonID) {
+                selectedPies.push(pies[i]);
+            }
+        }
+        filter = false;
         pieBuilder(pies);
     } else {
+        filter = true;
         pieBuilder(selectedPies);
     }
 
@@ -174,7 +232,7 @@ const getFormInfo = (e) => {
         iceCream,
     }
 
-    console.log(obj);
+    // console.log(obj);
     pies.push(obj);
     pieBuilder(pies);
     document.querySelector('form').reset();
@@ -185,21 +243,34 @@ const deletePie = (e) => {
 
     const tartgetType = e.target.type;
     const targetID = e.target.id;
+    let piesID = 0;
+    const targetIDNum = parseInt(e.target.id, 10);
 
     if (tartgetType === 'button') {
         // Do Something 
-        console.log(pies);
-        pies.splice(targetID, 1);
+        if (filter) {
+            console.log(selectedPies[targetIDNum]);
+            for (let i = 0; i < pies.length; i++) {
+                if ((pies[i].name === selectedPies[targetIDNum].name) &&
+                    (pies[i].instructor === selectedPies[targetIDNum].instructor)) {
 
-    } else {
-        console.log(pies);
+                    console.log('in IF');
+                    console.log(typeof(2));
+                    piesID = i;
+                    break;
+                }
+            }
+            pies.splice(piesID, 1);
+            selectedPies.splice(targetID, 1);
+            pieBuilder(selectedPies);
+        } else {
+            pies.splice(targetID, 1);
+            pieBuilder(pies);
+        }
     }
-    pieBuilder(pies);
-
+    // handleButtonClick(e);
+    // pieBuilder(pies);
 }
-
-
-
 
 /*Chainnig = ability to do something and add something to it at the end 
 same as above to, short hand  */
@@ -209,7 +280,6 @@ const ButtonEvents = () => {
     document.querySelector('#Doc').addEventListener('click', handleButtonClick);
     document.querySelector('#Aja').addEventListener('click', handleButtonClick);
     document.querySelector('#Trinity').addEventListener('click', handleButtonClick);
-
     document.querySelector('#pies').addEventListener('click', deletePie);
 
     // document.querySelector('#pies').addEventListener('click', (e) => {
@@ -219,7 +289,6 @@ const ButtonEvents = () => {
     // document.querySelector('#pies').addEventListener('click', (e) => {
     //     console.log(e);
     // });
-
 
     // document.querySelector('#pies').addEventListener('click', (e) => {
     //     // console.log(e.target.id);
@@ -237,13 +306,9 @@ const ButtonEvents = () => {
     //     pieBuilder(pies);
     // });
 
-
-
-
     document.querySelector('form').addEventListener('submit', getFormInfo);
     // document.querySelector('form').addEventListener('submit', (e) => {
     //     e.preventDefault();
-
     //     console.log('Form Submited');
     //     const name = document.querySelector('#name').value;
     //     const ingredients = document.querySelector('#ingredients').value;
@@ -265,14 +330,9 @@ const ButtonEvents = () => {
 
     //     console.log(obj);
 
-
     //}); // the page reloaded to fast 
     // we don't want it to reload
-
-
 }
-
-
 
 const init = () => {
     ButtonEvents();
@@ -282,11 +342,14 @@ const init = () => {
 
 init();
 
-
-
-
-
-
+// .foreach
+// const array = [1,2,3,4,5,6];
+// // [1,2,3,4,5,6].forEach((item) => ){
+// //   console.log(item);
+// // }
+// array.forEach((item, i) => {
+//   console.log(item, i);
+// })
 
 
 // END
