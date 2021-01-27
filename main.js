@@ -150,6 +150,41 @@ const handleButtonClick = (e) => {
 //     allBtn.addEventListener('click', handleButtonClick);
 // }
 
+
+const getFormInfo = (e) => {
+    // document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    // prevent defalt prevent's the page from refreshing 
+    // console.log('Form Submited');
+    const name = document.querySelector('#name').value;
+    const ingredients = document.querySelector('#ingredients').value;
+    const bakeTemp = document.querySelector('#bakeTemp').value;
+    const drinkPairing = document.querySelector('#drinkPairing').value;
+    const imageUrl = document.querySelector('#imageUrl').value;
+    const instructor = document.querySelector('#instructor').value;
+    const iceCream = document.querySelector('#iceCream').value;
+
+    const obj = {
+        name,
+        bakeTemp,
+        ingredients,
+        drinkPairing,
+        imageUrl,
+        instructor,
+        iceCream,
+    }
+
+    console.log(obj);
+    pies.push(obj);
+    pieBuilder(pies);
+    document.querySelector('form').reset();
+}
+
+
+
+
+
+
 /*Chainnig = ability to do something and add something to it at the end 
 same as above to, short hand  */
 // target elements on the DOM 
@@ -158,7 +193,37 @@ const ButtonEvents = () => {
     document.querySelector('#Doc').addEventListener('click', handleButtonClick);
     document.querySelector('#Aja').addEventListener('click', handleButtonClick);
     document.querySelector('#Trinity').addEventListener('click', handleButtonClick);
+    document.querySelector('form').addEventListener('submit', getFormInfo);
+    // document.querySelector('form').addEventListener('submit', (e) => {
+    //     e.preventDefault();
+
+    //     console.log('Form Submited');
+    //     const name = document.querySelector('#name').value;
+    //     const ingredients = document.querySelector('#ingredients').value;
+    //     const bakeTemp = document.querySelector('#bakeTemp').value;
+    //     const drinkPairing = document.querySelector('#drinkPairing').value;
+    //     const imageUrl = document.querySelector('#imageUrl').value;
+    //     const instructor = document.querySelector('#instructor').value;
+    //     const iceCream = document.querySelector('#iceCream').value;
+
+    //     const obj = {
+    //         name,
+    //         bakeTemp,
+    //         ingredients,
+    //         drinkPairing,
+    //         imageUrl,
+    //         instructor,
+    //         iceCream,
+    //     }
+
+    //     console.log(obj);
+
+
+    //}); // the page reloaded to fast 
+    // we don't want it to reload
 }
+
+
 
 const init = () => {
     ButtonEvents();
